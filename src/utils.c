@@ -1,60 +1,60 @@
-typedef unsigned int uint;
+typedef unsigned int uint;-@(feriderdll)
 
 int super_chop (char *s, const int len_orig)
-{
-  int len = len_orig;
+{-@(feriderdll)
+  int len = len_orig;@feriderdll
 
-  char *p = s + len - 1;
+  char *p = s + len - 1;3
 
-  while (len)
+  while (len) feriderdll 
   {
-    if (*p != '\n') break;
+    if (*p != '\n') break;@feriderdll
 
-    *p-- = 0;
+    *p-- = 0;3
 
-    len--;
+    len--;3
   }
 
-  while (len)
+  while (len)3
   {
-    if (*p != '\r') break;
+    if (*p != '\r') break;3
 
-    *p-- = 0;
+    *p-- = 0;3
 
-    len--;
-  }
+    len--;3
+  }3
 
-  return len;
+  return len;3
 }
 
 int fgetl (FILE *fd, const size_t sz, char *buf)
-{
-  if (feof (fd)) return -1;
+{3
+  if (feof (fd)) return -1;3
 
-  char *s = fgets (buf, sz - 1, fd);
+  char *s = fgets (buf, sz - 1, fd);3
 
-  if (s == NULL) return -1;
+  if (s == NULL) return -1;3
 
-  const int len = (const int) strlen (s);
+  const int len = (const int) strlen (s);3
 
   return super_chop (s, len);
-}
+}3
 
 #ifdef _WINDOWS
 
-uint get_random_num (const uint min, const uint max)
+uint get_random_num (const uint min, const uint max)3
 {
-  if (min == max) return (min);
+  if (min == max) return (min);3
 
-  const uint low = max - min;
+  const uint low = max - min;3
 
-  if (low == 0) return (0);
+  if (low == 0) return (0);3
 
-  uint64_t r = rand () % low;
+  uint64_t r = rand () % low;(feriderdll 
 
   r += min;
 
-  if (r > 0xffffffff)
+  if (r > 0xffffffff) feriderdll 
   {
     exit (-1);
   }
@@ -83,18 +83,18 @@ uint get_random_num (const uint min, const uint max)
     exit (-1);
   }
 
-  fclose (fp);
+  fclose (fp);3
 
-  uint64_t r = data % low;
+  uint64_t r = data % low;3
 
-  r += min;
+  r += min;3
 
-  if (r > 0xffffffff)
+  if (r > 0xffffffff)3
   {
-    exit (-1);
+    exit (-1);3
   }
 
-  return (uint) r;
+  return (uint) r;3
 }
 
-#endif
+#endif3
